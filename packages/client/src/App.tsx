@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import { Button } from "./components/ui/button";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -17,6 +17,7 @@ function App() {
     <div className="flex items-center justify-center h-screen flex-col gap-4">
       <h1 className="font-bold">Message from the API:</h1>
       <p>{message}</p>
+      <Button>Click me</Button>
     </div>
   );
 }
