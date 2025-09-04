@@ -17,7 +17,7 @@ function App() {
     <div className="flex items-center justify-center h-screen flex-col gap-4">
       <h1 className="font-bold">Message from the API:</h1>
       <p>{message}</p>
-      <Button>Click me</Button>
+      <Button>Click me!</Button>
     </div>
   );
 }
