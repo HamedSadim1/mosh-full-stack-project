@@ -1,5 +1,5 @@
 {
-  "name": "mosh-full-stack-project",
+  "name": "chatbot-full-stack-project",
   "module": "index.ts",
   "type": "module",
   "private": true,

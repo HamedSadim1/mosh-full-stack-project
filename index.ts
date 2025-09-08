@@ -1,5 +1,6 @@
 import concurrently from "concurrently";
 
+// Run both the server and client concurrently using the concurrently package
 concurrently([
   {
     name: "server",
