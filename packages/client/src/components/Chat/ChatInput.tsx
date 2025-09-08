@@ -1,28 +1,32 @@
 import { MoveUp } from "lucide-react";
-import { Button } from "./ui/button";
 import { useForm } from "react-hook-form";
+import { Button } from "../ui/button";
 
-type FormData = {
+export type ChatFormData = {
   prompt: string;
 };
-const ChatBot = () => {
-  const { register, handleSubmit, formState, reset } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-    reset();
-  };
+type Props = {
+  onSubmit: (data: ChatFormData) => Promise<void>;
+};
 
+const ChatInput = ({ onSubmit }: Props) => {
+  const { register, handleSubmit, formState, reset } = useForm<ChatFormData>();
+
+  const handleFormSubmit = handleSubmit((data: ChatFormData) => {
+    reset({ prompt: "" });
+    onSubmit(data);
+  });
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      handleSubmit(onSubmit)();
+      handleFormSubmit();
       e.preventDefault();
     }
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleFormSubmit}
       onKeyDown={handleKeyDown}
       className="flex flex-col gap-2 items-end border-2 p-4 rounded-3xl"
     >
@@ -37,6 +41,7 @@ const ChatBot = () => {
         placeholder="Ask me anything..."
         maxLength={1000}
         minLength={5}
+        autoFocus
       />
       <Button disabled={!formState.isValid} className="rounded-full w-9 h-9 ">
         <MoveUp />
@@ -45,4 +50,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;
+export default ChatInput;
